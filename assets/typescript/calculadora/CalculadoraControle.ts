@@ -28,7 +28,6 @@ export default class CalculadoraControle {
                     case "dez":
                         this.addNumero(Number(target.dataset.valor));
                         break;
-
                     case "adicao":
                     case "subtracao":
                     case "multiplicacao":
