@@ -1,7 +1,9 @@
+import DataHora from "./DataHora.js";
+
 export default class CalculadoraControle {
 
     constructor() {
-        console.log("CalculadoraControle")
+        new DataHora();
     }
 
 }
