@@ -58,8 +58,14 @@ export default class CalculadoraControle {
         this.operacao.add(valor);
     }
     addNumero(numero) {
+        if (isNaN(Number(this.operacao.ultimaPosicao))) {
+            this.addOperacao(numero.toString());
+        }
+        else {
+            numero = Number(this.operacao.ultimaPosicao.toString() + numero.toString());
+            this.operacao.ultimaPosicao = numero.toString();
+        }
         this.tela.telaValor = numero.toString();
-        this.addOperacao(numero.toString());
     }
     addOperador(operador) {
         this.operacao.add(operador);
