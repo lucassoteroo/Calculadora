@@ -2,7 +2,11 @@ import DataHora from "./DataHora.js";
 import Operacao from "./Operacao.js";
 import Tela from "./Tela.js";
 export default class CalculadoraControle {
-    constructor(tela = new Tela(), operacao = new Operacao()) {
+    constructor(tela = new Tela(), operacao = new Operacao({
+        onCalculado: (resultado) => {
+            this.tela.telaValor = resultado;
+        }
+    })) {
         this.tela = tela;
         this.operacao = operacao;
         new DataHora();
@@ -41,14 +45,17 @@ export default class CalculadoraControle {
                     case "porcentagemo":
                         break;
                     case "igual":
+                        this.calcular();
                         break;
                 }
             });
         });
     }
+    calcular() {
+        this.operacao.calcular();
+    }
     addOperacao(valor) {
         this.operacao.add(valor);
-        console.log(this.operacao.length);
     }
     addNumero(numero) {
         this.tela.telaValor = numero.toString();

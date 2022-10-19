@@ -6,7 +6,12 @@ export default class CalculadoraControle {
 
     constructor(
         private tela = new Tela(),
-        private operacao = new Operacao()
+        private operacao = new Operacao({
+            // Evento que pega o calculo
+            onCalculado: (resultado: string) => {
+                this.tela.telaValor = resultado;
+            }
+        })
     ) {
         new DataHora();
         this.eventosBotoes();
@@ -54,16 +59,19 @@ export default class CalculadoraControle {
                         break;
 
                     case "igual":
-
+                        this.calcular();
                         break;
                 }
             });
         });
     }
 
+    calcular(): void {
+        this.operacao.calcular();
+    }
+
     addOperacao(valor: string): void {
         this.operacao.add(valor);
-        console.log(this.operacao.length);
     }
 
     addNumero(numero: number): void {
